@@ -1,0 +1,50 @@
+---
+title: "Ezmel: legajos, contratos y cartera de clientes"
+publishedAt: "2026-10-22"
+summary: "Aplicación web multi-tenant para una financiera: legajos de cliente digitales, contratos, préstamos y cobranzas, con roles y descarga en Word, PDF y Excel."
+tag: "Freelance"
+tech:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "Tailwind CSS"
+  - "Supabase"
+  - "PostgreSQL"
+  - "Netlify"
+images:
+  - "/images/projects/ezmel-legajos-de-cliente/01.jpg"
+  - "/images/projects/ezmel-legajos-de-cliente/02.jpg"
+  - "/images/projects/ezmel-legajos-de-cliente/03.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Desarrollo full stack (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Resumen
+
+**Proyecto freelance** desarrollado para un cliente. Ezmel reemplaza el "Legajo de Cliente" que se armaba a mano en un Word. Es una aplicación interna con login, un formulario guiado de varios pasos y generación de los documentos finales, pensada para una empresa de servicios financieros que gestiona legajos, contratos y préstamos.
+
+## Funcionalidades
+
+- **Legajo en 3 pasos**: datos del cliente, documentación (carga de imágenes y archivos por categoría) y revisión con vista previa en formato Word.
+- **Exportación**: el legajo se descarga como `.docx`, `.pdf` o `.xlsx`. Los PDF adjuntos se convierten a imágenes en el navegador para incluirlos en el documento.
+- **Módulos del sistema**: contratos, historial de documentos, cartera de clientes, cotizador de interés, préstamos y cuotas, cobranzas y vencimientos, tablero con reportes y administración de usuarios.
+- **Multi-tenant con roles**: `admin`, `operador` y `lectura`. El acceso es por invitación: crear una cuenta no alcanza, hay que estar invitado a un tenant con ese email.
+- **Login** con Google o con email y contraseña mediante Supabase Auth.
+- **Modo demo** sin configuración: si no hay variables de entorno, la app arranca con datos en memoria, solo en desarrollo.
+
+## Tecnologías
+
+- **Next.js 16** (App Router) con **React 19** y **TypeScript**.
+- **Tailwind CSS 4** para los estilos.
+- **Supabase**: Auth, Postgres con RLS para aislar los datos entre tenants, y Storage para los adjuntos.
+- **react-hook-form** y **zod** para formularios y validación.
+- **docx**, **@react-pdf/renderer** y **exceljs** para generar los documentos.
+- **pdfjs-dist** para rasterizar PDF en el cliente.
+- Despliegue en **Netlify**.
+
+## Aprendizajes
+
+El punto más delicado fue el aislamiento entre tenants: las políticas RLS, los roles y las invitaciones se cubren con pruebas automatizadas de base de datos (`npm run test:db`). También generar los documentos en el navegador evita límites de tamaño y demoras de subida al servidor.

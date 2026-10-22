@@ -1,0 +1,49 @@
+---
+title: "TurnApp: physiotherapy appointment booking"
+publishedAt: "2026-08-11"
+summary: "Appointment app with a calendar, an agenda for the practitioner and deposit payments through Mercado Pago, with double booking prevented at the database level."
+tag: "Freelance · In development"
+tech:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "Tailwind CSS"
+  - "Supabase"
+  - "PostgreSQL"
+  - "Mercado Pago"
+images:
+  - "/images/projects/turnapp-turnos-kinesiologia/01.jpg"
+  - "/images/projects/turnapp-turnos-kinesiologia/02.jpg"
+  - "/images/projects/turnapp-turnos-kinesiologia/03.jpg"
+  - "/images/projects/turnapp-turnos-kinesiologia/04.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Full stack development (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+**Freelance project** built for a client. Currently **in development**. TurnApp lets patients of a physiotherapy clinic book appointments online: pick a day and time, reserve with a deposit and that is it, with no phone calls or waiting. The practitioner and the administrator see the full agenda.
+
+## Features
+
+- **"Book an appointment" calendar** that computes free slots from availability and blocked times.
+- **Admin agenda** with day, week and month views.
+- **Deposit booking**: the appointment starts as pending with an expiry, the payment is confirmed through a **Mercado Pago** webhook and only then becomes confirmed. A cron job releases expired pending appointments.
+- **Login** with Google or email, automatic profile on sign-up and a flow to complete personal data.
+- **Full demo mode** (patient and admin) to try it without configuring Supabase.
+- *Glassmorphism* design over a blue gradient, in light and dark mode.
+
+## Technologies
+
+- **Next.js 16** (App Router), **TypeScript** and **Tailwind CSS 4**.
+- **Supabase**: Auth, Postgres with RLS and versioned SQL migrations.
+- **Mercado Pago**: payment preference and webhook.
+
+## Technical decisions
+
+- **Double booking prevented in the database**: an `EXCLUDE USING gist` constraint over the time range stops two active appointments of the same practitioner from overlapping, even if two people book at the same time.
+- **RLS**: each patient only sees their own data, while the practitioner and the admin see the whole agenda.
+- A trigger creates the profile on sign-up, taking first name, last name and phone from the registration.

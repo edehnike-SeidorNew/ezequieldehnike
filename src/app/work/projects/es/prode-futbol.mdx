@@ -1,0 +1,39 @@
+---
+title: "Prode: pronósticos de fútbol"
+publishedAt: "2026-06-30"
+summary: "Frontend de un juego de pronósticos: registro, predicciones por partido, puntaje y ranking con podio. Proyecto final de ORT."
+tag: "Facultad · ORT"
+tech:
+  - "Next.js"
+  - "React"
+  - "JavaScript"
+  - "Tailwind CSS"
+images:
+  - "/images/projects/prode-futbol/01.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Desarrollo frontend"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Resumen
+
+El Prode es un juego de pronósticos de fútbol. El usuario se registra, ve los partidos, predice cuántos goles hace cada equipo y suma puntos según acierte. Es el proyecto final de la materia Programación de Nuevas Tecnologías 2 en ORT, y se desarrolló solo la parte de **frontend**, que consume un backend externo.
+
+## Funcionalidades
+
+- **Registro e inicio de sesión**.
+- **Listado de partidos** y carga de predicciones.
+- **Sistema de puntos**: +3 por resultado exacto, +1 por acertar el ganador o el empate y 0 si se falla.
+- **Ranking** de jugadores con podio.
+
+## Tecnologías
+
+- **Next.js 16** (App Router) y **React 19**.
+- **Tailwind CSS 4**.
+- Capa de servicios organizada por tema (autenticación, partidos y predicciones) sobre una única función de `fetch` hacia la API.
+
+## Aprendizajes
+
+Separar una capa de API y servicios por dominio mantiene los componentes simples y facilita cambiar el backend. También aprendí a defender cada decisión del proyecto durante la evaluación, con una guía de estudio propia del código.

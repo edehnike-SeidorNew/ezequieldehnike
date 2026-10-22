@@ -1,0 +1,39 @@
+---
+title: "Prode: football predictions game"
+publishedAt: "2026-06-30"
+summary: "Frontend of a prediction game: sign-up, match predictions, scoring and a ranking with a podium. Final project at ORT."
+tag: "University · ORT"
+tech:
+  - "Next.js"
+  - "React"
+  - "JavaScript"
+  - "Tailwind CSS"
+images:
+  - "/images/projects/prode-futbol/01.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Frontend development"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+The Prode is a football prediction game. Users sign up, see the matches, predict how many goals each team will score and earn points depending on how accurate they are. It is the final project of the New Technologies Programming 2 course at ORT, and only the **frontend** was built, consuming an external backend.
+
+## Features
+
+- **Sign-up and login**.
+- **Match list** and prediction entry.
+- **Scoring system**: +3 for an exact score, +1 for guessing the winner or a draw, and 0 for a miss.
+- **Player ranking** with a podium.
+
+## Technologies
+
+- **Next.js 16** (App Router) and **React 19**.
+- **Tailwind CSS 4**.
+- A services layer organized by topic (authentication, matches and predictions) on top of a single `fetch` function that calls the API.
+
+## Learnings
+
+Separating an API and services layer by domain keeps components simple and makes it easy to swap the backend. I also learned to defend every decision of the project during the evaluation, with my own study guide of the code.

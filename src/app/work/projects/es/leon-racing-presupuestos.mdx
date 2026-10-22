@@ -1,0 +1,47 @@
+---
+title: "Leon Racing: presupuestos de arreglos de motos"
+publishedAt: "2026-09-28"
+summary: "App interna de un taller para armar presupuestos de reparación en tres pasos y descargarlos como PDF listo para el cliente."
+tag: "Freelance"
+tech:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "Tailwind CSS"
+  - "Supabase"
+images:
+  - "/images/projects/leon-racing-presupuestos/01.jpg"
+  - "/images/projects/leon-racing-presupuestos/02.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Desarrollo full stack (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Resumen
+
+**Proyecto freelance** desarrollado para un cliente. Aplicación interna de un taller de motos y performance de Castelar, Buenos Aires. Permite armar presupuestos de reparación de forma rápida y prolija, sin depender de una planilla ni de escribirlos a mano.
+
+## Funcionalidades
+
+- **Login** del administrador del taller con email y contraseña o con Google.
+- **Wizard de 3 pasos**:
+  1. Datos del cliente y de la moto, y selección de arreglos entre unos 95 posibles, agrupados por sección (motor, frenos, transmisión, suspensión, sistema eléctrico, neumáticos, carburación e inyección, escape, carrocería y mantenimiento), cada uno con su precio estimado.
+  2. Revisión con precio editable por arreglo y posibilidad de agregar **arreglos personalizados**. El total se recalcula solo.
+  3. Vista previa del documento final con encabezado del taller, detalle, total y condiciones.
+- **PDF generado en el navegador**: se guarda el presupuesto y se descarga sin pasar por el servidor.
+- **Pestañas** en la pantalla principal, listas para sumar un historial de presupuestos.
+- **Modo demo** sin configuración, con datos mock en desarrollo.
+
+## Tecnologías
+
+- **Next.js 16** (App Router), **React 19** y **TypeScript**.
+- **Tailwind CSS 4**.
+- **Supabase** (Auth y Postgres) con esquema SQL propio.
+- **react-hook-form** y **zod**.
+- **@react-pdf/renderer** para el PDF.
+
+## Aprendizajes
+
+Modelar la lista de arreglos como datos y no como código permite que el taller actualice precios sin tocar la lógica. Generar el PDF del lado del cliente simplificó el despliegue.

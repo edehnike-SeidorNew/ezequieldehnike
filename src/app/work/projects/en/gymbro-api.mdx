@@ -1,0 +1,42 @@
+---
+title: "GymBro: REST API for a gym"
+publishedAt: "2026-04-15"
+summary: "Node.js, Express and MongoDB API to manage members, memberships, payments and classes, with JWT authentication and profile pictures. ORT project."
+tag: "University · ORT"
+tech:
+  - "Node.js"
+  - "Express"
+  - "MongoDB"
+  - "JavaScript"
+images:
+  - "/images/projects/gymbro-api/01.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Backend development"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+GymBro is a REST API for gym management, built as the final project of the THP2 course at ORT. It covers users, members, memberships, payments and classes, with enrolling and unenrolling members in each class.
+
+## Features
+
+- **Sign-up and login** with passwords hashed with **bcrypt** and **JWT** sessions.
+- **Full CRUD** for members, memberships, payments and classes.
+- **Enrolling and unenrolling** members in classes.
+- **Profile pictures** for users and members, uploaded through an upload middleware to **Supabase Storage**.
+- **Protected routes** with a middleware that verifies the token.
+
+## Technologies
+
+- **Node.js** and **Express 5**.
+- **MongoDB** with **Mongoose**.
+- **JWT** and **bcryptjs**.
+- **dotenv** for per-environment configuration.
+- Layered architecture: routes, controllers, models and middleware.
+
+## Learnings
+
+Separating routes, controllers and models made the API easy to extend. I learned to protect routes with middleware and to handle file uploads to an external service.

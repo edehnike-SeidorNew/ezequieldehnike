@@ -1,0 +1,47 @@
+---
+title: "Leon Racing: motorcycle repair quotes"
+publishedAt: "2026-09-28"
+summary: "Internal workshop app to build repair quotes in three steps and download them as a client-ready PDF."
+tag: "Freelance"
+tech:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "Tailwind CSS"
+  - "Supabase"
+images:
+  - "/images/projects/leon-racing-presupuestos/01.jpg"
+  - "/images/projects/leon-racing-presupuestos/02.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Full stack development (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+**Freelance project** built for a client. Internal application for a motorcycle and performance workshop in Castelar, Buenos Aires. It lets the shop build repair quotes quickly and neatly, without relying on a spreadsheet or writing them by hand.
+
+## Features
+
+- **Login** for the shop administrator with email and password or Google.
+- **3-step wizard**:
+  1. Client and motorcycle data, and selection of repairs among about 95 options grouped by section (engine, brakes, transmission, suspension, electrical system, tires, carburetion and injection, exhaust, bodywork and maintenance), each with an estimated price.
+  2. Review with an editable price per repair and the option to add **custom repairs**. The total recalculates automatically.
+  3. Preview of the final document with the workshop header, details, total and terms.
+- **PDF generated in the browser**: the quote is saved and downloaded without going through the server.
+- **Tabs** on the main screen, ready to add a quote history.
+- **Demo mode** with no setup, using mock data in development.
+
+## Technologies
+
+- **Next.js 16** (App Router), **React 19** and **TypeScript**.
+- **Tailwind CSS 4**.
+- **Supabase** (Auth and Postgres) with its own SQL schema.
+- **react-hook-form** and **zod**.
+- **@react-pdf/renderer** for the PDF.
+
+## Learnings
+
+Modeling the list of repairs as data instead of code lets the workshop update prices without touching the logic. Generating the PDF on the client simplified deployment.

@@ -1,0 +1,50 @@
+---
+title: "Ezmel: client files, contracts and customer portfolio"
+publishedAt: "2026-10-22"
+summary: "Multi-tenant web app for a financial services company: digital client files, contracts, loans and collections, with roles and Word, PDF and Excel export."
+tag: "Freelance"
+tech:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "Tailwind CSS"
+  - "Supabase"
+  - "PostgreSQL"
+  - "Netlify"
+images:
+  - "/images/projects/ezmel-legajos-de-cliente/01.jpg"
+  - "/images/projects/ezmel-legajos-de-cliente/02.jpg"
+  - "/images/projects/ezmel-legajos-de-cliente/03.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Full stack development (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+**Freelance project** built for a client. Ezmel replaces the "Client File" that used to be assembled by hand in a Word document. It is an internal application with login, a guided multi-step form and generation of the final documents, built for a financial services company that manages client files, contracts and loans.
+
+## Features
+
+- **3-step client file**: client data, documentation (images and files uploaded by category) and a review step with a Word-style preview.
+- **Export**: the file downloads as `.docx`, `.pdf` or `.xlsx`. Attached PDFs are rasterized in the browser so they can be included in the document.
+- **System modules**: contracts, document history, customer portfolio, interest quoting tool, loans and installments, collections and due dates, a dashboard with reports, and user administration.
+- **Multi-tenant with roles**: `admin`, `operator` and `read-only`. Access is invitation-based: creating an account is not enough, you must be invited to a tenant with that email.
+- **Login** with Google or email and password through Supabase Auth.
+- **Demo mode** with zero setup: without environment variables the app starts with in-memory data, in development only.
+
+## Technologies
+
+- **Next.js 16** (App Router) with **React 19** and **TypeScript**.
+- **Tailwind CSS 4** for styling.
+- **Supabase**: Auth, Postgres with RLS to isolate data between tenants, and Storage for attachments.
+- **react-hook-form** and **zod** for forms and validation.
+- **docx**, **@react-pdf/renderer** and **exceljs** to generate the documents.
+- **pdfjs-dist** to rasterize PDFs on the client.
+- Deployed on **Netlify**.
+
+## Learnings
+
+The most delicate part was tenant isolation: RLS policies, roles and invitations are covered by automated database tests (`npm run test:db`). Generating documents in the browser also avoids size limits and upload delays to the server.

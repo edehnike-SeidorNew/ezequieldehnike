@@ -1,0 +1,42 @@
+---
+title: "González & Pires: law firm website"
+publishedAt: "2026-10-21"
+summary: "Institutional website for a law firm, with practice areas, team, FAQ and a consultation form that sends branded emails."
+tag: "Freelance"
+tech:
+  - "HTML"
+  - "CSS"
+  - "JavaScript"
+  - "Node.js"
+  - "Netlify"
+images:
+  - "/images/projects/gonzalez-y-pires-estudio-juridico/01.jpg"
+  - "/images/projects/gonzalez-y-pires-estudio-juridico/02.jpg"
+  - "/images/projects/gonzalez-y-pires-estudio-juridico/03.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Web design and development (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+**Freelance project** built for a client. Institutional website for a full-service law firm in Buenos Aires. The goal is to build trust and make contact easy: a visitor should understand which areas the firm covers and be able to write or message them on WhatsApp in a few clicks.
+
+## Features
+
+- **Sections**: areas of expertise, why choose us, track record with statistics, coverage map, team and an FAQ accordion.
+- **Consultation form** with attachments. It first used FormSubmit and I later migrated it to a **Netlify Function** that sends the email through the **Resend** API, with branded design and without the limits of free plans.
+- **Floating WhatsApp button** across all sections.
+- **Responsive design** with a hamburger menu on mobile and a mix of serif and sans-serif typefaces for an institutional feel.
+
+## Technologies
+
+- **HTML, CSS and JavaScript**, no frameworks or build step.
+- **Netlify Functions** (Node.js) and **Resend** for email delivery.
+- Deployed on **Netlify**.
+
+## Learnings
+
+Moving email delivery to my own function meant handling environment variables, attachments and server-side validation. Choosing a static page resulted in a very light site that is easy to maintain.

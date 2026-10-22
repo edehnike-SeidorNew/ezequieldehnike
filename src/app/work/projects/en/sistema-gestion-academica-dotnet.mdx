@@ -1,0 +1,60 @@
+---
+title: "Academic management system in .NET"
+publishedAt: "2025-11-20"
+summary: "ASP.NET Core MVC application for a school, with employee, teacher and student roles, enrollments with business rules and grading. ORT project."
+tag: "University · ORT · Group project"
+tech:
+  - "C#"
+  - ".NET"
+  - "SQL Server"
+images:
+  - "/images/projects/sistema-gestion-academica-dotnet/01.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/02.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/03.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/04.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/05.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Full stack development"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Overview
+
+**Group project** from university (ORT). Management system for a teaching institute, built with **ASP.NET Core MVC** and **C#** as a course project for New Technologies Programming 1 at ORT. The institute is presented as **X-Tech**, a technology education institute. Every entity has its CRUD screens and the system is used by three types of users.
+
+## Roles
+
+- **Administrative employee**: manages degrees, subjects, teachers, students and courses.
+- **Teacher**: grades their students and sees their subjects and the class lists of each course.
+- **Student**: enrolls in pending subjects and checks their history and grades.
+
+The navigation bar changes by role using conditional rendering in the layout, with `User.Identity.IsAuthenticated` and `User.IsInRole`.
+
+## Business rules
+
+- **At most 5 active courses per term** for each student.
+- **Students cannot enroll** in subjects they have already passed (grade of 6 or higher).
+- **Capacity control**: when a course fills up, a new one is created automatically with the same teacher.
+- **Average grade** per course, visible to the teacher in a subject detail view.
+
+These validations live in an enrollment *helper* used by the controller.
+
+## Interface
+
+Razor views with a custom purple gradient design: a public home page presenting the institute and its specialties, login and sign-up, and listings with CRUD screens for each entity. Each role only sees what applies to them.
+
+## Test data
+
+A seeding endpoint (`/PreCarga/Seed`) creates the roles, users, degrees, subjects, courses and enrollments so the whole system can be tried with each role.
+
+## Technologies
+
+- **C#** and **ASP.NET Core MVC** with Razor views.
+- **Entity Framework Core 8** (DbContext and migrations) with **SQL Server** (LocalDB) and **LINQ** queries. **InMemory** mode for development.
+- Role-based authentication and authorization with **Identity**.
+
+## Learnings
+
+This was my first project with the MVC pattern in .NET. I learned to separate business logic into helpers, model related entities and write clear LINQ queries.

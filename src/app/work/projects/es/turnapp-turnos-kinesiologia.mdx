@@ -1,0 +1,49 @@
+---
+title: "TurnApp: reserva de turnos de kinesiología"
+publishedAt: "2026-08-11"
+summary: "App de turnos con calendario, agenda para el profesional y reserva con seña por Mercado Pago, sin turnos superpuestos garantizado desde la base de datos."
+tag: "Freelance · En desarrollo"
+tech:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "Tailwind CSS"
+  - "Supabase"
+  - "PostgreSQL"
+  - "Mercado Pago"
+images:
+  - "/images/projects/turnapp-turnos-kinesiologia/01.jpg"
+  - "/images/projects/turnapp-turnos-kinesiologia/02.jpg"
+  - "/images/projects/turnapp-turnos-kinesiologia/03.jpg"
+  - "/images/projects/turnapp-turnos-kinesiologia/04.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Desarrollo full stack (freelance)"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Resumen
+
+**Proyecto freelance** desarrollado para un cliente. Actualmente **en desarrollo**. TurnApp permite a los pacientes de un consultorio de kinesiología sacar turno online: elegir día y horario, reservar con una seña y listo, sin llamados ni esperas. El profesional y el administrador ven la agenda completa.
+
+## Funcionalidades
+
+- **Calendario "Sacar turno"** con cálculo de horarios libres según disponibilidad y bloqueos.
+- **Agenda del administrador** con vistas de día, semana y mes.
+- **Reserva con seña**: el turno nace pendiente con vencimiento, el pago se confirma por webhook de **Mercado Pago** y recién ahí pasa a confirmado. Un cron libera los turnos pendientes vencidos.
+- **Login** con Google o con email, perfil automático al registrarse y flujo para completar datos.
+- **Modo demo** completo (paciente y admin) para probar sin configurar Supabase.
+- Diseño *glassmorphism* sobre degradado azul, en modo claro y oscuro.
+
+## Tecnologías
+
+- **Next.js 16** (App Router), **TypeScript** y **Tailwind CSS 4**.
+- **Supabase**: Auth, Postgres con RLS y migraciones SQL versionadas.
+- **Mercado Pago**: preferencia de pago y webhook.
+
+## Decisiones técnicas
+
+- **Anti-turno-doble en la base de datos**: una restricción `EXCLUDE USING gist` sobre el rango de tiempo impide que dos turnos activos del mismo profesional se solapen, aunque dos personas reserven al mismo tiempo.
+- **RLS**: cada paciente ve solo lo suyo, mientras que profesional y administrador ven toda la agenda.
+- Un trigger crea el perfil al registrarse, tomando nombre, apellido y teléfono del alta.

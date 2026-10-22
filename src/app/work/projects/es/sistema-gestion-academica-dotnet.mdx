@@ -1,0 +1,60 @@
+---
+title: "Sistema de gestión académica en .NET"
+publishedAt: "2025-11-20"
+summary: "Aplicación ASP.NET Core MVC para un instituto, con roles de empleado, profesor y alumno, inscripciones con reglas de negocio y calificaciones. Proyecto de ORT."
+tag: "Facultad · ORT · Trabajo grupal"
+tech:
+  - "C#"
+  - ".NET"
+  - "SQL Server"
+images:
+  - "/images/projects/sistema-gestion-academica-dotnet/01.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/02.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/03.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/04.jpg"
+  - "/images/projects/sistema-gestion-academica-dotnet/05.jpg"
+team:
+  - name: "Ezequiel Dehnike"
+    role: "Desarrollo full stack"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ezequieldehnike/"
+---
+
+## Resumen
+
+**Trabajo grupal** de la facultad (ORT). Sistema de gestión para un instituto de enseñanza, desarrollado en **ASP.NET Core MVC** con **C#** como trabajo práctico de Programación de Nuevas Tecnologías 1 en ORT. El instituto se presenta como **X-Tech**, un instituto de educación tecnológica. Todas las entidades tienen su ABM y el sistema se maneja con tres tipos de usuarios.
+
+## Roles
+
+- **Empleado administrativo**: administra carreras, materias, profesores, alumnos y cursos.
+- **Profesor**: califica a sus alumnos, ve sus materias y los listados de cada cursada.
+- **Alumno**: se inscribe en materias pendientes y consulta su historial y calificaciones.
+
+La barra de navegación cambia según el rol con renderizado condicional en el layout, usando `User.Identity.IsAuthenticated` y `User.IsInRole`.
+
+## Reglas de negocio
+
+- **Máximo de 5 cursadas activas por cuatrimestre** para cada alumno.
+- **No se puede inscribir** a materias ya aprobadas (nota mayor o igual a 6).
+- **Control de cupo**: al llenarse un curso se crea automáticamente uno nuevo con el mismo profesor.
+- **Promedio de notas** por cursada, visible para el profesor en una vista de detalle de la materia.
+
+Estas validaciones viven en un *helper* de inscripciones usado por el controlador.
+
+## Interfaz
+
+Vistas Razor con un diseño propio en degradé violeta: una home pública con la presentación del instituto y sus especialidades, login y registro, y listados con ABM para cada entidad. Cada rol ve solo lo que le corresponde.
+
+## Datos de prueba
+
+Un endpoint de precarga (`/PreCarga/Seed`) crea los roles, usuarios, carreras, materias, cursadas e inscripciones para poder probar el sistema completo con cada rol.
+
+## Tecnologías
+
+- **C#** y **ASP.NET Core MVC** con vistas Razor.
+- **Entity Framework Core 8** (DbContext y migraciones) con **SQL Server** (LocalDB) y consultas **LINQ**. Modo **InMemory** para desarrollo.
+- Autenticación y autorización por roles con **Identity**.
+
+## Aprendizajes
+
+Fue mi primer proyecto con el patrón MVC en .NET. Aprendí a separar la lógica de negocio en helpers, a modelar entidades relacionadas y a escribir consultas LINQ claras.
