@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import bundledContent from "@/generated/content.json";
 
 type Team = {
   name: string;
@@ -32,12 +33,7 @@ function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath: string) {
-  if (!fs.existsSync(filePath)) {
-    notFound();
-  }
-
-  const rawContent = fs.readFileSync(filePath, "utf-8");
+function parseMDX(rawContent: string) {
   const { data, content } = matter(rawContent);
 
   const metadata: Metadata = {
@@ -55,7 +51,31 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
+function readMDXFile(filePath: string) {
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
+
+  return parseMDX(fs.readFileSync(filePath, "utf-8"));
+}
+
 function getMDXData(dir: string) {
+  // In production (Netlify) the source .mdx files are not shipped with the serverless functions,
+  // so the content bundled by scripts/build-content.mjs is used instead.
+  if (process.env.NODE_ENV === "production") {
+    const key = path
+      .relative(path.join(process.cwd(), "src", "app"), dir)
+      .split(path.sep)
+      .join("/");
+    const bundled = (bundledContent as Record<string, { file: string; raw: string }[]>)[key];
+    if (bundled) {
+      return bundled.map(({ file, raw }) => ({
+        ...parseMDX(raw),
+        slug: path.basename(file, path.extname(file)),
+      }));
+    }
+  }
+
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
