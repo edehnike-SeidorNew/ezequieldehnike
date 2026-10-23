@@ -1,121 +1,98 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import {
+  PiBookBookmarkDuotone,
+  PiEnvelopeSimpleDuotone,
+  PiFileTextDuotone,
+  PiImageDuotone,
+  PiListBold,
+  PiRocketLaunchDuotone,
+  PiUserCircleDuotone,
+  PiXBold,
+} from "react-icons/pi";
 
-import { Avatar, Column, IconButton, Row, SmartLink, Text, ToggleButton } from "@once-ui-system/core";
-
-import { routes, display, person, social } from "@/resources";
+import { routes, display, person } from "@/resources";
 import type { Locale } from "@/resources/locale";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 
 type HeaderProps = {
   locale: Locale;
-  labels: { about: string; work: string; cv: string; blog: string; gallery: string };
+  labels: {
+    home: string;
+    about: string;
+    work: string;
+    cv: string;
+    contact: string;
+    blog: string;
+    gallery: string;
+  };
 };
 
+/** Full-width glass top bar: brand, icon + text links, language dropdown and theme switch. */
 export const Header = ({ locale, labels }: HeaderProps) => {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: "/about", label: labels.about, active: pathname === "/about" },
-    { href: "/work", label: labels.work, active: pathname.startsWith("/work") },
-    { href: "/cv", label: labels.cv, active: pathname.startsWith("/cv") },
-    { href: "/blog", label: labels.blog, active: pathname.startsWith("/blog") },
-    { href: "/gallery", label: labels.gallery, active: pathname.startsWith("/gallery") },
+    { href: "/about", label: labels.about, Icon: PiUserCircleDuotone, active: pathname === "/about" },
+    { href: "/work", label: labels.work, Icon: PiRocketLaunchDuotone, active: pathname.startsWith("/work") },
+    { href: "/cv", label: labels.cv, Icon: PiFileTextDuotone, active: pathname.startsWith("/cv") },
+    { href: "/contact", label: labels.contact, Icon: PiEnvelopeSimpleDuotone, active: pathname.startsWith("/contact") },
+    { href: "/blog", label: labels.blog, Icon: PiBookBookmarkDuotone, active: pathname.startsWith("/blog") },
+    { href: "/gallery", label: labels.gallery, Icon: PiImageDuotone, active: pathname.startsWith("/gallery") },
   ].filter((link) => routes[link.href as keyof typeof routes]);
 
+  const renderLinks = (className: string) =>
+    links.map(({ href, label, Icon, active }) => (
+      <Link
+        key={href}
+        href={href}
+        className={active ? `${className} is-active` : className}
+        onClick={() => setOpen(false)}
+      >
+        <span className="topbar-ico" aria-hidden="true">
+          <Icon />
+        </span>
+        <span>{label}</span>
+      </Link>
+    ));
+
   return (
-    <Column
-      as="header"
-      fillWidth
-      position="sticky"
-      top="0"
-      zIndex={9}
-      background="page"
-      borderBottom="neutral-alpha-weak"
-      style={{ backdropFilter: "blur(12px)", background: "color-mix(in srgb, var(--page-background) 80%, transparent)" }}
-    >
-      <Row fillWidth paddingX="l" paddingY="12" vertical="center" horizontal="between" gap="16">
-        <Row flex={1} vertical="center">
-          <SmartLink href="/" onClick={() => setOpen(false)} unstyled>
-            <Row gap="12" vertical="center">
-              <Avatar src={person.avatar} size="m" />
-              <Text variant="label-strong-m" onBackground="neutral-strong">
-                {person.name}
-              </Text>
-            </Row>
-          </SmartLink>
-        </Row>
+    <header className="topbar">
+      <div className="topbar-inner">
+        <Link href="/" className="topbar-brand" aria-label={labels.home} onClick={() => setOpen(false)}>
+          <img className="topbar-avatar" src={person.avatar} alt="" />
+          <span className="topbar-name">{person.name}</span>
+        </Link>
 
-        <Row gap="4" vertical="center" horizontal="center" s={{ hide: true }}>
-          {links.map((link) => (
-            <ToggleButton key={link.href} href={link.href} label={link.label} selected={link.active} />
-          ))}
-        </Row>
+        <nav className="topbar-links" aria-label="Principal">
+          {renderLinks("topbar-link")}
+        </nav>
 
-        <Row flex={1} gap="4" vertical="center" horizontal="end" s={{ hide: true }}>
+        <div className="topbar-actions">
           <LanguageToggle locale={locale} />
-          {social.map(
-            (item) =>
-              item.link && (
-                <IconButton
-                  key={item.name}
-                  href={item.link}
-                  icon={item.icon}
-                  tooltip={item.name}
-                  size="m"
-                  variant="ghost"
-                />
-              ),
-          )}
           {display.themeSwitcher && <ThemeToggle />}
-        </Row>
-
-        <Row hide s={{ hide: false }} gap="4" vertical="center">
-          <LanguageToggle locale={locale} />
-          <IconButton
-            icon={open ? "close" : "menu"}
-            variant="ghost"
-            size="l"
+          <button
+            type="button"
+            className="topbar-burger"
             aria-label="Menu"
+            aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
-          />
-        </Row>
-      </Row>
+          >
+            {open ? <PiXBold /> : <PiListBold />}
+          </button>
+        </div>
+      </div>
 
       {open && (
-        <Column hide s={{ hide: false }} fillWidth paddingX="l" paddingBottom="16" gap="4">
-          {links.map((link) => (
-            <ToggleButton
-              key={link.href}
-              href={link.href}
-              label={link.label}
-              selected={link.active}
-              fillWidth
-              onClick={() => setOpen(false)}
-            />
-          ))}
-          <Row gap="8" paddingTop="8" vertical="center">
-            {social.map(
-              (item) =>
-                item.link && (
-                  <IconButton
-                    key={item.name}
-                    href={item.link}
-                    icon={item.icon}
-                    tooltip={item.name}
-                    size="m"
-                    variant="ghost"
-                  />
-                ),
-            )}
-            {display.themeSwitcher && <ThemeToggle />}
-          </Row>
-        </Column>
+        <nav className="topbar-panel" aria-label="Principal móvil">
+          {renderLinks("topbar-panel-link")}
+        </nav>
       )}
-    </Column>
+    </header>
   );
 };

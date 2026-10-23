@@ -7,6 +7,8 @@ const withMDX = mdx({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // The template ships an ESLint config that needs eslint-config-next; linting is not part of the deploy.
+  eslint: { ignoreDuringBuilds: true },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
   images: {

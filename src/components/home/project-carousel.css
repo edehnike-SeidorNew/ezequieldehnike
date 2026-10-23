@@ -1,0 +1,221 @@
+.pc {
+  width: 100%;
+  touch-action: pan-y;
+  overflow-x: clip;
+}
+
+.pc-stage {
+  position: relative;
+  height: 440px;
+  perspective: 1500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-card {
+  position: absolute;
+  width: min(340px, 74%);
+  height: 340px;
+  padding: 10px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: #eef1ff;
+  text-decoration: none;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(var(--h), 0.42), transparent 60%),
+    linear-gradient(145deg, rgba(var(--h), 0.24), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(var(--h), 0.62);
+  box-shadow:
+    0 0 28px rgba(var(--h), 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 0 24px rgba(var(--h), 0.14);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.5s ease,
+    box-shadow 0.3s ease;
+}
+
+.pc-card.is-center {
+  height: 396px;
+  box-shadow:
+    0 0 44px rgba(var(--h), 0.5),
+    0 24px 56px rgba(var(--h), 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 0 28px rgba(var(--h), 0.2);
+}
+
+.pc-card.is-center:hover {
+  box-shadow:
+    0 0 56px rgba(var(--h), 0.7),
+    0 28px 64px rgba(var(--h), 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 30px rgba(var(--h), 0.26);
+}
+
+/* numbered badge over the picture, like the biography cards */
+.pc-num {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: #fff;
+  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.55), rgba(var(--h), 0.95) 58%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 18px rgba(var(--h), 0.8),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.pc-card img {
+  width: 100%;
+  height: 158px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 10px 22px rgba(var(--h), 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.pc-card.is-center img {
+  height: 178px;
+}
+
+.pc-body {
+  padding: 0.8rem 0.7rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pc-title {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.pc-summary {
+  margin: 0;
+  font-size: 0.82rem;
+  opacity: 0.78;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.pc-chip {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 200, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pc-chip.is-tag {
+  background: linear-gradient(90deg, rgba(103, 232, 249, 0.25), rgba(167, 139, 250, 0.25));
+  border-color: rgba(167, 139, 250, 0.5);
+}
+
+.pc-nav {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pc-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 200, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  color: inherit;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pc-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.06);
+}
+
+.pc-count {
+  opacity: 0.7;
+  font-size: 0.85rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .pc-stage {
+    height: 420px;
+  }
+}
+
+.pc-all-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.pc-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid rgba(160, 200, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pc-all:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+/* light theme: keep the colours, switch to dark text */
+[data-theme="light"] .pc-card {
+  color: #1b1f4a;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(var(--h), 0.3), transparent 60%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(var(--h), 0.14));
+}
+
+[data-theme="light"] .pc-card .tech-badge {
+  background: rgba(255, 255, 255, 0.75);
+}

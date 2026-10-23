@@ -6,7 +6,7 @@ const person: Person = {
   lastName: "Dehnike",
   name: `Ezequiel Dehnike`,
   role: "Ingeniero de Software",
-  avatar: "/images/avatar.jpeg",
+  avatar: "/images/avatar-3d.webp",
   email: "ezequieldehnike@gmail.com",
   location: "Buenos Aires, Argentina",
   languages: ["Español", "Inglés básico"], // optional: Leave the array empty if you don't want to display languages
@@ -19,12 +19,32 @@ const newsletter: Newsletter = {
 };
 
 const social: Social = [
-  // Links are automatically displayed.
+  // Links are automatically displayed. Entries with an empty link are hidden until you fill them in.
   // Import new icons in /once-ui/icons.ts
   {
     name: "LinkedIn",
     icon: "linkedin",
     link: "https://www.linkedin.com/in/ezequieldehnike/",
+  },
+  {
+    name: "GitHub",
+    icon: "github",
+    link: "https://github.com/edehnike-SeidorNew",
+  },
+  {
+    name: "Instagram",
+    icon: "instagram",
+    link: "", // TODO: add your Instagram profile URL
+  },
+  {
+    name: "Facebook",
+    icon: "facebook",
+    link: "", // TODO: add your Facebook profile URL
+  },
+  {
+    name: "WhatsApp",
+    icon: "whatsapp",
+    link: "https://wa.me/5491168090361",
   },
   {
     name: "Email",
@@ -79,7 +99,6 @@ const home: Home = {
       { icon: "translate", label: "Idiomas", value: "Español, inglés básico" },
       { icon: "mail", label: "Email", value: "ezequieldehnike@gmail.com" },
     ],
-    downloadCv: "Ver mi CV",
   },
   services: {
     title: "Qué hago",
@@ -114,8 +133,6 @@ const home: Home = {
   projects: {
     title: "Proyectos",
     subtitle: "Una selección de mis trabajos freelance, de la facultad y personales.",
-    viewAll: "Ver todos los proyectos",
-    count: 3,
   },
 };
 

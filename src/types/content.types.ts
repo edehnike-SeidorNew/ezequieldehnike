@@ -104,7 +104,6 @@ export interface Home extends BasePageConfig {
     title: string;
     paragraphs: React.ReactNode[];
     facts: Array<{ icon: IconName; label: string; value: React.ReactNode }>;
-    downloadCv: string;
   };
   /** "What I do" section */
   services: {
@@ -116,8 +115,6 @@ export interface Home extends BasePageConfig {
   projects: {
     title: string;
     subtitle: string;
-    viewAll: string;
-    count: number;
   };
 }
 

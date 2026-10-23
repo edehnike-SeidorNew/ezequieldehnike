@@ -1,0 +1,259 @@
+/* Chevron buttons. Pick one style with <ArrowButton variant="..." /> */
+.arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font-size: 20px;
+  line-height: 1;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.arrow-btn:hover {
+  transform: translateY(-2px) scale(1.06);
+}
+
+.arrow-btn:active {
+  transform: scale(0.95);
+}
+
+.arrow-btn:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+
+/* 1. glass circle */
+.arrow-glass {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(160, 200, 255, 0.4);
+  background: linear-gradient(145deg, rgba(120, 170, 255, 0.22), rgba(255, 255, 255, 0.06));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.arrow-glass:hover {
+  background: linear-gradient(145deg, rgba(120, 170, 255, 0.4), rgba(255, 255, 255, 0.12));
+  border-color: rgba(103, 232, 249, 0.7);
+}
+
+/* 2. plain chevron, no container */
+.arrow-plain {
+  width: 40px;
+  height: 46px;
+  border: none;
+  background: none;
+  font-size: 30px;
+  opacity: 0.8;
+}
+
+.arrow-plain:hover {
+  opacity: 1;
+  color: #67e8f9;
+}
+
+/* 3. gradient filled circle */
+.arrow-gradient {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  color: #05061a;
+  background: linear-gradient(135deg, #67e8f9, #a78bfa);
+  box-shadow: 0 8px 22px rgba(103, 232, 249, 0.38);
+}
+
+.arrow-gradient:hover {
+  box-shadow: 0 12px 28px rgba(139, 92, 246, 0.55);
+}
+
+/* 4. neon outline */
+.arrow-neon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid #67e8f9;
+  background: rgba(103, 232, 249, 0.06);
+  color: #67e8f9;
+  box-shadow:
+    0 0 14px rgba(103, 232, 249, 0.4),
+    inset 0 0 12px rgba(103, 232, 249, 0.15);
+}
+
+.arrow-neon:hover {
+  background: rgba(103, 232, 249, 0.18);
+  box-shadow:
+    0 0 22px rgba(103, 232, 249, 0.7),
+    inset 0 0 14px rgba(103, 232, 249, 0.25);
+}
+
+/* 5. wide pill */
+.arrow-pill {
+  width: 68px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 200, 255, 0.4);
+  background: linear-gradient(145deg, rgba(120, 170, 255, 0.2), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 6. rounded square */
+.arrow-square {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(59, 130, 246, 0.3));
+  box-shadow:
+    0 8px 18px rgba(59, 130, 246, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* 7. double chevron, glass circle */
+.arrow-double {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(160, 200, 255, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 18px;
+}
+
+/* 8. gradient pill: same shape and colours as the active dot indicator */
+.arrow-gradient-pill {
+  width: 62px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  color: #05061a;
+  font-size: 19px;
+  background: linear-gradient(90deg, #67e8f9, #a78bfa);
+  box-shadow: 0 6px 18px rgba(103, 232, 249, 0.35);
+}
+
+.arrow-gradient-pill:hover {
+  box-shadow: 0 10px 24px rgba(139, 92, 246, 0.5);
+}
+
+/* 9. soft gradient pill: translucent version with a light chevron */
+.arrow-soft-pill {
+  width: 62px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.55);
+  color: #eef1ff;
+  font-size: 19px;
+  background: linear-gradient(90deg, rgba(103, 232, 249, 0.3), rgba(167, 139, 250, 0.3));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.arrow-soft-pill:hover {
+  background: linear-gradient(90deg, rgba(103, 232, 249, 0.5), rgba(167, 139, 250, 0.5));
+}
+
+/* 10. outline pill with a gradient border */
+.arrow-outline-pill {
+  position: relative;
+  width: 62px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  font-size: 19px;
+  background: rgba(10, 14, 50, 0.6);
+}
+
+.arrow-outline-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #67e8f9, #a78bfa);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+[data-theme="light"] .arrow-soft-pill {
+  color: #1b1f4a;
+}
+
+[data-theme="light"] .arrow-outline-pill {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* 11-12. line arrow, wide, gradient stroke, no container */
+.arrow-stroke,
+.arrow-stroke-brand {
+  width: 64px;
+  height: 40px;
+  border: none;
+  background: none;
+  border-radius: 0;
+  filter: drop-shadow(0 4px 10px rgba(79, 70, 229, 0.35));
+}
+
+.arrow-stroke-brand {
+  filter: drop-shadow(0 4px 10px rgba(103, 232, 249, 0.35));
+}
+
+.arrow-stroke-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 0.25s ease;
+}
+
+.arrow-stroke:hover,
+.arrow-stroke-brand:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 560px) {
+  .arrow-stroke,
+  .arrow-stroke-brand {
+    width: 54px;
+    height: 34px;
+  }
+}
+
+[data-theme="light"] .arrow-glass,
+[data-theme="light"] .arrow-pill,
+[data-theme="light"] .arrow-double {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(235, 240, 255, 0.6));
+  border-color: rgba(99, 120, 241, 0.35);
+}
+
+[data-theme="light"] .arrow-neon {
+  color: #0e9fc0;
+  border-color: #0e9fc0;
+  box-shadow: 0 0 12px rgba(14, 159, 192, 0.35);
+}
+
+@media (max-width: 560px) {
+  .arrow-glass,
+  .arrow-gradient,
+  .arrow-neon,
+  .arrow-square,
+  .arrow-double {
+    width: 42px;
+    height: 42px;
+  }
+}

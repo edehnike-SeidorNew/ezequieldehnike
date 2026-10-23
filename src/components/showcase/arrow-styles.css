@@ -1,0 +1,40 @@
+.as-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 1.25rem;
+}
+
+.as-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(120, 170, 255, 0.14), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(160, 200, 255, 0.22);
+}
+
+.as-desc {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.as-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.as-card code {
+  font-size: 0.72rem;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+}

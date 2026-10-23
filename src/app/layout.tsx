@@ -33,7 +33,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { locale, about, work, blog, gallery, t } = await getContent();
+  const { locale, home, about, work, blog, gallery, t } = await getContent();
 
   return (
     <Flex
@@ -49,6 +49,7 @@ export default async function RootLayout({
       )}
     >
       <head>
+        <meta name="generator" content="Magic Portfolio by Once UI (https://once-ui.com)" />
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
@@ -117,6 +118,7 @@ export default async function RootLayout({
           padding="0"
           horizontal="center"
         >
+          <div className="glass-bg" aria-hidden="true" />
           <RevealFx fill position="absolute">
             <Background
               mask={{
@@ -162,13 +164,16 @@ export default async function RootLayout({
           <Header
             locale={locale}
             labels={{
+              home: home.label,
               about: about.label,
               work: work.label,
               cv: t.cv,
+              contact: t.contact,
               blog: blog.label,
               gallery: gallery.label,
             }}
           />
+          <div className="rail-offset">
           <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
             <Flex horizontal="center" fillWidth minHeight="0">
               <RouteGuard notFound={{ title: t.notFoundTitle, text: t.notFoundText }}>
@@ -177,6 +182,7 @@ export default async function RootLayout({
             </Flex>
           </Flex>
           <Footer />
+          </div>
         </Column>
       </Providers>
     </Flex>

@@ -6,12 +6,12 @@ type SectionHeadingProps = {
 };
 
 export const SectionHeading = ({ title, subtitle }: SectionHeadingProps) => (
-  <Column fillWidth gap="12" marginBottom="24">
-    <Heading as="h2" variant="display-strong-s">
+  <Column fillWidth gap="12" marginBottom="24" className="section-heading">
+    <Heading as="h2" variant="display-strong-s" className="section-title">
       {title}
     </Heading>
     {subtitle && (
-      <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance">
+      <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance" className="section-sub">
         {subtitle}
       </Text>
     )}

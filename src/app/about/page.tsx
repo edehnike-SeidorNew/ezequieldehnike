@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Button,
   Column,
   Heading,
@@ -14,6 +13,7 @@ import {
 } from "@once-ui-system/core";
 import { baseURL, social } from "@/resources";
 import { getContent } from "@/resources/i18n";
+import { Portrait } from "@/components/Portrait";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
@@ -96,7 +96,7 @@ export default async function About() {
             flex={3}
             horizontal="center"
           >
-            <Avatar src={person.avatar} size="xl" />
+            <Portrait name={person.name} size={240} />
             <Row gap="8" vertical="center">
               <Icon onBackground="accent-weak" name="globe" />
               {person.location}

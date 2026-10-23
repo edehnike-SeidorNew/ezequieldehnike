@@ -21,6 +21,8 @@ const routes: RoutesConfig = {
   "/about": true,
   "/work": true,
   "/cv": true,
+  "/contact": true,
+  "/opciones": process.env.NODE_ENV !== "production",
   "/blog": false,
   "/gallery": false,
 };
@@ -74,8 +76,8 @@ const fonts: FontsConfig = {
 const style: StyleConfig = {
   theme: "system", // dark | light | system
   neutral: "slate", // sand | gray | slate | custom
-  brand: "indigo", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  accent: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  brand: "blue", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  accent: "violet", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
   solid: "contrast", // color | contrast
   solidStyle: "flat", // flat | plastic
   border: "rounded", // rounded | playful | conservative

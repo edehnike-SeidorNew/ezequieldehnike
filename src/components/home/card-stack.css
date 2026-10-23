@@ -1,0 +1,286 @@
+/* Phone card stack. The grid version is shown above 720px, the stack at or below it. */
+.stack-mobile {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .stack-desktop {
+    display: none;
+  }
+
+  .stack-mobile {
+    display: block;
+    width: 100%;
+  }
+}
+
+.cstack {
+  width: 100%;
+  touch-action: pan-y;
+}
+
+.cstack-stage {
+  display: grid;
+  width: 100%;
+}
+
+.cstack-item {
+  grid-area: 1 / 1;
+  display: flex;
+  transform-origin: 50% 0%;
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.45s ease,
+    filter 0.45s ease;
+}
+
+.cstack-item > .lq {
+  flex: 1;
+  height: auto;
+}
+
+/* opaque faces so the cards behind never show through */
+.cstack-item .lq {
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(var(--h), 0.4), transparent 60%),
+    linear-gradient(145deg, #1a2160, #0b0f33 75%) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--h), 0.65),
+    0 10px 24px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="light"] .cstack-item .lq {
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(var(--h), 0.28), transparent 60%),
+    linear-gradient(145deg, #ffffff, #e7ecff 75%) !important;
+}
+
+/* the small fact cards get their icon back inside the stack */
+.cstack-item .lq.lq-sm {
+  padding-right: 66px;
+  min-height: 92px;
+}
+
+.cstack-item .lq.lq-sm .lq-art {
+  display: block;
+}
+
+.cstack-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.cstack-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 200, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.cstack-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.cstack-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.cstack-dot.is-active {
+  width: 20px;
+  background: linear-gradient(90deg, #67e8f9, #a78bfa);
+}
+
+[data-theme="light"] .cstack-dot {
+  background: rgba(60, 80, 200, 0.25);
+}
+
+/* cards behind the front one only show their coloured edge */
+.cstack-item[aria-hidden="true"] .lq > * {
+  opacity: 0;
+}
+
+/* Phone stack: tall, almost square cards */
+@media (max-width: 720px) {
+  .cstack-item .lq,
+  .cstack-item .lq.lq-sm {
+    min-height: min(67vw, 264px) !important;
+    padding: 18px !important;
+    grid-template-rows: auto 1fr;
+    align-content: stretch;
+    row-gap: 14px;
+    border-radius: 24px;
+  }
+
+  .cstack-item .lq .lq-num {
+    width: 36px;
+    height: 36px;
+    font-size: 0.88rem;
+  }
+
+  .cstack-item .lq .lq-text strong,
+  .cstack-item .lq.lq-sm .lq-text strong {
+    font-size: 1.05rem !important;
+    padding-right: 54px;
+  }
+
+  .cstack-item .lq .lq-text span {
+    align-self: center;
+    font-size: 0.9rem !important;
+    line-height: 1.5;
+  }
+
+  .cstack-item .lq.lq-sm .lq-text span {
+    font-size: 1.1rem !important;
+    line-height: 1.35;
+  }
+
+  .cstack-item .lq .lq-art,
+  .cstack-item .lq.lq-sm .lq-art {
+    top: 12px !important;
+    right: 12px !important;
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .cstack-item .lq .lq-art .tile,
+  .cstack-item .lq.lq-sm .lq-art .tile {
+    font-size: 20px !important;
+    inset: 8px 0 0 8px !important;
+    border-radius: 14px !important;
+  }
+
+  .cstack-stage {
+    padding-bottom: 4px;
+  }
+}
+
+/* keep the stack inside its container on very narrow screens */
+.cstack,
+.cstack-stage {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.cstack-stage {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cstack-item,
+.cstack-item > .lq {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.cstack-item .lq-text span,
+.cstack-item .lq-text strong {
+  overflow-wrap: anywhere;
+}
+
+/* Phones: centre titles and content */
+@media (max-width: 720px) {
+  .cstack-item .lq .lq-text strong,
+  .cstack-item .lq.lq-sm .lq-text strong {
+    text-align: center;
+    padding-left: 54px;
+  }
+
+  .cstack-item .lq .lq-text span,
+  .cstack-item .lq.lq-sm .lq-text span {
+    text-align: center;
+  }
+}
+
+/* Card layout (stack): number | centred title | icon on one row, description centred below */
+@media (max-width: 720px) {
+  .cstack-item .lq,
+  .cstack-item .lq.lq-sm {
+    display: grid !important;
+    grid-template-columns: 46px 1fr 46px !important;
+    grid-template-rows: auto 1fr !important;
+    align-items: center !important;
+    column-gap: 8px !important;
+    row-gap: 12px !important;
+    padding: 14px 14px 20px !important;
+  }
+
+  .cstack-item .lq .lq-num {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: center;
+  }
+
+  .cstack-item .lq .lq-text,
+  .cstack-item .lq.lq-sm .lq-text {
+    display: contents !important;
+  }
+
+  .cstack-item .lq .lq-text strong,
+  .cstack-item .lq.lq-sm .lq-text strong {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    padding: 0 !important;
+    text-align: center;
+    overflow-wrap: normal;
+    word-break: normal;
+    align-self: center;
+  }
+
+  .cstack-item .lq .lq-art,
+  .cstack-item .lq.lq-sm .lq-art {
+    position: relative !important;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 45px !important;
+    height: 45px !important;
+    transform: none !important;
+  }
+
+  .cstack-item .lq .lq-text span,
+  .cstack-item .lq.lq-sm .lq-text span {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    align-self: center;
+    padding: 0 6px;
+    text-align: center;
+    overflow-wrap: break-word;
+  }
+
+  .cstack-item .lq.lq-sm .lq-text span {
+    font-size: 1rem !important;
+  }
+}
+
+/* Biography facts: 20% shorter than the services cards */
+@media (max-width: 720px) {
+  #section-bio .cstack-item .lq,
+  #section-bio .cstack-item .lq.lq-sm {
+    min-height: min(54vw, 211px) !important;
+    padding-bottom: 16px !important;
+  }
+}

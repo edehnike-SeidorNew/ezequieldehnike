@@ -21,6 +21,10 @@ const ui = {
     dateLocale: "es-AR",
     language: "Idioma",
     cv: "CV",
+    contact: "Contacto",
+    viewAllProjects: "Ver todos",
+    followMe: "Sígueme",
+    followText: "Encontrame en mis redes",
   },
   en: {
     readCaseStudy: "View project details",
@@ -35,6 +39,10 @@ const ui = {
     dateLocale: "en-US",
     language: "Language",
     cv: "Résumé",
+    contact: "Contact",
+    viewAllProjects: "View all",
+    followMe: "Follow me",
+    followText: "Find me on social media",
   },
 } as const;
 

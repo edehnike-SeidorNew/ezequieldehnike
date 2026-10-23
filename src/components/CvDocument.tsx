@@ -23,13 +23,12 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
 export const CvDocument = ({ data, name, role, email, linkedin, location }: CvDocumentProps) => (
   <Column
     id="cv-document"
+    className="glass"
     fillWidth
     maxWidth="m"
     gap="32"
     padding="xl"
     radius="l"
-    border="neutral-alpha-weak"
-    background="surface"
     s={{ padding: "l" }}
   >
     <Column gap="8">

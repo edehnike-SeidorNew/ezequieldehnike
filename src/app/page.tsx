@@ -1,18 +1,9 @@
-import {
-  Heading,
-  Text,
-  Button,
-  Avatar,
-  RevealFx,
-  Column,
-  Badge,
-  Row,
-  Schema,
-  Meta,
-} from "@once-ui-system/core";
+import { Icon, RevealFx, Column, Schema, Meta } from "@once-ui-system/core";
 import { baseURL } from "@/resources";
 import { getContent } from "@/resources/i18n";
 import { Mailchimp } from "@/components";
+import { Hero } from "@/components/home/Hero";
+import { SnapScroll } from "@/components/home/SnapScroll";
 import { Biography } from "@/components/home/Biography";
 import { Services } from "@/components/home/Services";
 import { ProjectPreview } from "@/components/home/ProjectPreview";
@@ -31,7 +22,7 @@ export async function generateMetadata() {
 export default async function Home() {
   const { home, about, person } = await getContent();
   return (
-    <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
+    <Column maxWidth="m" gap="0" horizontal="center" fillWidth>
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -45,77 +36,31 @@ export default async function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Column fillWidth horizontal="center" gap="m">
-        <Column maxWidth="s" horizontal="center" align="center">
-          {home.featured.display && (
-            <RevealFx
-              fillWidth
-              horizontal="center"
-              paddingTop="16"
-              paddingBottom="32"
-              paddingLeft="12"
-            >
-              <Badge
-                background="brand-alpha-weak"
-                paddingX="12"
-                paddingY="4"
-                onBackground="neutral-strong"
-                textVariant="label-default-s"
-                arrow={false}
-                href={home.featured.href}
-              >
-                <Row paddingY="2">{home.featured.title}</Row>
-              </Badge>
-            </RevealFx>
-          )}
-          <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
-            <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
-            </Heading>
-          </RevealFx>
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
-            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
-              {home.subline}
-            </Text>
-          </RevealFx>
-          <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={about.path}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
-            >
-              <Row gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
-                {about.title}
-              </Row>
-            </Button>
-          </RevealFx>
-        </Column>
-      </Column>
-      <RevealFx translateY="16" delay={0.6} fillWidth>
-        <Biography
-          bio={home.bio}
-          avatar={person.avatar}
-          name={person.name}
-          role={person.role}
-          cvHref="/cv"
-          aboutHref={about.path}
-          aboutLabel={about.label}
-        />
-      </RevealFx>
-      <Services services={home.services} />
-      <ProjectPreview />
+      <SnapScroll
+        sections={[
+          { id: "section-hero", label: home.label },
+          { id: "section-bio", label: home.bio.title },
+          { id: "section-services", label: home.services.title },
+          { id: "section-projects", label: home.projects.title },
+        ]}
+      />
+      <section id="section-hero" className="snap-section">
+        <Hero home={home} name={person.name} />
+        <a href="#section-bio" className="scroll-hint" aria-label={home.bio.title}>
+          <Icon name="arrowDown" size="m" />
+        </a>
+      </section>
+      <section id="section-bio" className="snap-section">
+        <RevealFx translateY="16" fillWidth>
+          <Biography bio={home.bio} />
+        </RevealFx>
+      </section>
+      <section id="section-services" className="snap-section">
+        <Services services={home.services} />
+      </section>
+      <section id="section-projects" className="snap-section">
+        <ProjectPreview />
+      </section>
       <Mailchimp />
     </Column>
   );
